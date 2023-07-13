@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "name": "Buy milk",
+        "description": "Go to the store and buy milk",
+        "completion_status": true
+    },
+    {
+        "id": 2,
+        "name": "Buy eggs",
+        "description": "Go to the store and buy eggs",
+        "completion_status": false
+    }
+]
