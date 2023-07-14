@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "name": "Johan Lozano",
+        "email": "lozanojohan321@gmail.com",
+        "password": "$2a$12$zgbaKMY8Ai/oPLa9Y3g2uOaW6ZLsawvVZjX0OChfC9ssdjxpLsRIy",
+        "site": "johanlozano.blog"
+    },
+    {
+        "id": 2,
+        "name": "Adrian Felipe",
+        "email": "adrianfelipe321@gmail.com",
+        "password": "$2a$12$TEUSKcrI9LjIveNjTCzVKeq56PXBqbWKVN0SUjm5sQ09MWMGlPYiO",
+        "site": "felipe.blog"
+    },
+    {
+        "id": 3,
+        "name": "Elpepe",
+        "email": "pepeel@gmail.com",
+        "password": "$2a$12$YnrwSWU6aR0i/MaApbZ.ZOnQiZdBlphgXM/EjZO3hQE1N7m39Zi9u",
+        "site": "johanlozano.elpepe"
+    },
+    {
+        "id": 4,
+        "name": "Juan Carlos",
+        "email": "carlos@gmail.com",
+        "site": "carlos.com",
+        "password": "$2b$12$Pfmz.lfSsUhrO12kr6cGiumGAbnT01niz8MueKS8qao5jJzavi7kG"
+    },
+    {
+        "id": 5,
+        "name": "Pablo Emilio",
+        "email": "jose@gmail.com",
+        "site": "jose.com",
+        "password": "$2b$12$hJmMmzeJrvinwRrV2HAGvu6qsVEdTSNnwdSFEfXdsAhtaoyf0hfSq"
+    },
+    {
+        "id": 6,
+        "name": "Tururuur",
+        "email": "hoouin_kyiouma@gmail.com",
+        "password": "$2b$12$FXm4ocoJoIS4V7Oia83T0.ATX1CZDQgoZqQJnXvGLLLVy8Q9fs0Iy",
+        "site": "tuturu.com"
+    }
+]
