@@ -1,8 +1,7 @@
-from typing import Dict
 from fastapi import APIRouter, HTTPException, status
-from models.task_model import Task
-from data.data_manager import *
-import json
+
+from app.models.task_model import Task
+from app.data.data_manager import *
 
 
 router = APIRouter()
