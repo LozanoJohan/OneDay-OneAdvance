@@ -171,3 +171,52 @@ async def get_current_user(token: str = Depends(oauth2)):
 
     return user_found
   
+
+
+@router.get("/users/me/tasks/{task_id}", response_model=User)
+async def get_current_user(task_id: int, token: str = Depends(oauth2)):
+
+    users = get_users()
+
+    try:
+        user_id = jwt.decode(token, SECRET, algorithms=["HS256"])["sub"]
+
+    except JWTError:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, 
+                            detail="Invalid token")
+    
+    user_found = next(filter(lambda user: str(user["id"]) == user_id, users), None)
+
+    if not user_found:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, 
+                            detail="User not found")
+
+    task_found = next(filter(lambda task_db: task_db["id"] == task_id, user_found.get("tasks", [])), None)
+
+    if not task_found:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Task not found")
+
+    return task_found
+
+
+@router.get("/users/me/tasks/", response_model=User)
+async def get_current_user(token: str = Depends(oauth2)):
+
+    users = get_users()
+
+    try:
+        user_id = jwt.decode(token, SECRET, algorithms=["HS256"])["sub"]
+
+    except JWTError:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, 
+                            detail="Invalid token")
+    
+    user_found = next(filter(lambda user: str(user["id"]) == user_id, users), None)
+
+    if not user_found:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, 
+                            detail="User not found")
+
+    
+
+    return user_found["tasks"]
