@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+
+
+{% block content %}
+
+    <header class="row ">
+        <div class="col-md-4">
+            <img src="{% static 'portfolio/profile.jpg' %}" alt="hola" class="img-fluid">
+        </div>
+        <div class="col-md-8">
+            <h3>I'am a Python FullStack Developer</h3> 
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias mollitia labore consequatur minus expedita enim quisquam delectus possimus, voluptate id aut, doloribus sit. Aliquam at adipisci fugiat itaque consectetur error!</p>
+            <a class="btn btn-primary btn-lg rounded-0 my-3" href="{% static 'portfolio/cv.pdf' %}" target="_blank">Download CV</a>
+        </div>
+    </header>
+
+
+    <h3>My projects</h3>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum quae iste, autem aliquam dolorem sit at quia, ratione dolor eius consequuntur, vel suscipit quasi! Itaque deserunt ex eaque quos optio?</p>
+
+
+    {% for project in projects %}
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+
+                    <h2>{{project.title}}</h2>
+                    <p>{{project.description}}</p>
+
+                    <img src="{{project.image.url}}" alt="{{project.title}}" class="img-fluid">
+
+                    {% if project.url %}
+
+                        <a href="{{project.url}}">Link</a>
+
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+        
+    {% endfor %}
+
+{% endblock %}
