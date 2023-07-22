@@ -1,13 +1,18 @@
 import pygame
 import sys
-import config
+from config import WIDTH, HEIGHT, FPS, screen
 from pixel_structures import pixels_as_list
 from algorithms import *
 
 
-def init_game():
+pygame.init()
+pygame.display.set_caption("Game")
 
-    pygame.init()
+
+
+def main():
+
+    clock = pygame.time.Clock()
 
 
     while True:
@@ -16,16 +21,17 @@ def init_game():
                 pygame.quit()
                 sys.exit()
 
-        explosion(8, 1)
 
-        config.display_surface.fill((0, 0, 0))
+        screen.fill((0, 0, 0))
 
-        
+        explosion(speed=.7)
 
-        pygame.display.update()
-        config.FramePerSec.tick(config.FPS)
+        for entity in pixels_as_list:
+            screen.blit(entity.surf, entity.rect)
 
-        #for pixel in pixels_as_list: pixel.set_color((0,0,0,0))
+        pygame.display.flip()
+        clock.tick(FPS)
+
 
 if __name__ == '__main__':
-    init_game()
+    main()

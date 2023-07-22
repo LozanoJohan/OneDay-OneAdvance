@@ -12,7 +12,7 @@ class Pixel(Sprite):
         self.surf = Surface((PIXEL_LENGTH, PIXEL_LENGTH))
         self.rect = self.surf.get_rect(center = pos)
 
-        self.set_color(Color('white'))
+        self.set_color(Color('black'))
     
     def set_color(self, color: Color):
 
