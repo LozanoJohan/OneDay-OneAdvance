@@ -1,10 +1,9 @@
-from pygame.sprite import Sprite
 from pygame import Color, Surface
 from pygame.math import Vector2
-from config import PIXEL_LENGTH
+from config import PIXEL_LENGTH, screen
 
 
-class Pixel(Sprite):
+class Pixel:
     def __init__(self, pos: Vector2):
         super().__init__()
         
@@ -14,7 +13,13 @@ class Pixel(Sprite):
 
         self.set_color(Color('black'))
     
+
     def set_color(self, color: Color):
 
         self.color = color
         self.surf.fill(self.color)
+
+
+    def draw(self):
+
+        screen.blit(self.surf, self.rect)

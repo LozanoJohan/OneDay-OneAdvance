@@ -1,14 +1,15 @@
 from pixel_structures import pixels_as_list, pixels_as_matrix
-from config import PIXEL_LENGTH, screen
+from config import PIXEL_LENGTH, NUMBER_OF_PIXELS_X
 
 from pygame import Color
+from lib import utils
 import pygame
 import math
 import random
-import time
 
 
-def sin(): 
+
+def rainbow(): 
 
     color = Color(255, 255, 255)
     time = pygame.time.get_ticks() / 1000
@@ -21,76 +22,63 @@ def sin():
             color.hsva = (hue, 100, 100, 100)
 
             x_pixel.set_color(color)
-            
-
-def explosion(speed, radius: int = None, center: tuple = None, color: Color = None):
-
-    def random_color():
-
-        r = random.randint(0, 255)
-        g = random.randint(0, 255)
-        b = random.randint(0, 255)
-
-        return Color(r, g, b)
+            x_pixel.draw()
     
+    pygame.display.flip()
 
-    def fade_out(color: Color):
 
-        _color: Color = color or random_color()
-    radius = radius or random.randint(1, PIXEL_LENGTH / 2)
+
+def explosion(wait_time: int = 25):
+
+    '''Boom
+    params:
+    wait_time: int - Time in miliseconds to wait each layer to color.
+    '''
+
+    color: Color = utils.random_color_by_hue()
+    radius = random.randint(1, PIXEL_LENGTH / 2)
 
     center_pixel = random.choice(pixels_as_list)
-    center_pixel.set_color(_color)
+    center_pixel.set_color(color)
 
     pixels_already_colored = set()
 
     for layer in range(0, radius * int(PIXEL_LENGTH), int(PIXEL_LENGTH)):
         
-        _color.r -= _color.r // radius
-        _color.g -= _color.g // radius
-        _color.b -= _color.b // radius
+        color.r -= color.r // radius
+        color.g -= color.g // radius
+        color.b -= color.b // radius
 
         for pixel in pixels_as_list:
 
             if (pixel.pos - center_pixel.pos).length() < layer and pixel not in pixels_already_colored:
                 
-                pixel.set_color(_color)
+                pixel.set_color(color)
+                pixel.draw()
+
                 pixels_already_colored.add(pixel)
-
-    
-    _color: Color = color or random_color()
-    radius = radius or random.randint(1, PIXEL_LENGTH / 2)
-
-    center_pixel = random.choice(pixels_as_list)
-    center_pixel.set_color(_color)
-
-    pixels_already_colored = set()
-
-    for layer in range(0, radius * int(PIXEL_LENGTH), int(PIXEL_LENGTH)):
         
-        _color.r -= _color.r // radius
-        _color.g -= _color.g // radius
-        _color.b -= _color.b // radius
 
-        for pixel in pixels_as_list:
-
-            if (pixel.pos - center_pixel.pos).length() < layer and pixel not in pixels_already_colored:
-                
-                pixel.set_color(_color)
-                pixels_already_colored.add(pixel)
-
-
-    fade_out(_color)
-            
-            
-
-
-            
-
-
-    
+        pygame.display.flip()
+        pygame.time.delay(wait_time)
 
 
 
+def wave(t: int, speed: int = 2):
 
-    
+    color = Color(255, 255, 255)
+    t = t * speed
+
+    for y, row in enumerate(pixels_as_matrix):
+
+        for x, pixel in enumerate(row):
+
+            hue = 180 * math.cos(t) * math.sin(x * math.pi/ NUMBER_OF_PIXELS_X) * math.sin(7 + (y * math.pi/ NUMBER_OF_PIXELS_X)) + 180
+            color.hsva = (hue, 100, 100, 100)
+
+            pixel.set_color(color)
+            pixel.draw()
+        
+    pygame.display.flip()
+
+
